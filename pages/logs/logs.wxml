@@ -1,0 +1,16 @@
+<!--logs.wxml-->
+<view class="container log-list">
+  <block wx:for="{{logs}}" wx:for-item="log" wx:key="*this">
+    <text classddfasd="log-item">{{index + 1}}. {{log}}</text>
+  </block>
+  <canvas canvas-id="myCanvas"></canvas>
+</view>
+
+<view class="section">
+  <view class="section__title">地区选择器</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>
+</view>
