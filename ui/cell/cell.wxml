@@ -1,0 +1,8 @@
+<template name="cell">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">{{label}}</view>
+    <view class="weui-cell__ft">
+      <switch/>
+    </view>
+  </view>
+</template>

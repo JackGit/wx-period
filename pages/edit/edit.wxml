@@ -1,27 +1,32 @@
-<view class="c-section">
-  <view class="c-section__label">日期</view>
-</view>
-
-<view class="c-section">
-  <view class="c-section__label">温度</view>
-  <picker>
-    <view>
-      当前选择：{{array[index]}}
+<view class="page">
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">日期</view>
+      <view class="weui-cell__ft">2017-01-07</view>
     </view>
-  </picker>
-</view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">体温Period</view>
+      <picker>
+        <view class="weui-cell__ft">36.7</view>
+      </picker>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">Period</view>
+      <view class="weui-cell__ft"><switch/></view>
+    </view>
+  </view>
+    
+  <view class="weui-cells__title">备忘</view>
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <textarea placeholder="今日备忘" name="textarea"/>
+      </view>
+    </view>
+  </view>
 
-<view class="c-section">
-  <view class="c-section__label">月经期</view>
-  <switch></switch>
-</view>
-
-<view class="c-section">
-  <view class="c-seciton__label">备忘</view>
-  <textarea placeholder="今日备忘" name="textarea"/>
-</view>
-
-<view class="c-actions">
-  <button type="primary">保存</button>
-  <button type="warn">删除</button>
+  <view class="weui-btn-area">
+    <button type="primary" class="weui-btn">保存</button>
+    <button type="warn" class="weui-btn">删除</button>
+  </view>
 </view>

@@ -1,4 +1,0 @@
-<view class="ui-cell">
-  <view class="ui-cell__label">{{label}}</view>
-  <view class="ui-cell__value">{{value}}</view>
-</view>
