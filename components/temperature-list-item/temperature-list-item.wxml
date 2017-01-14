@@ -1,6 +1,0 @@
-<template name="temperatureListItem">
-  <view class="c-temperatureListItem">
-    <view class="c-temperatureListItem__date">2017/1/2</view>
-    <view class="c-temperatureListItem__temperature">36.7</view>
-  </view>
-</template>

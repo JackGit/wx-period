@@ -2,15 +2,16 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/edit/edit"
+    "pages/edit/edit",
+    "pages/month/month"
   ],
   "tabBar": {
     "list": [{
       "pagePath": "pages/index/index",
-      "text": "首页"
+      "text": "日"
     }, {
       "pagePath": "pages/logs/logs",
-      "text": "日志"
+      "text": "月"
     }]
   },
   "window":{
