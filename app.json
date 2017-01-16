@@ -5,15 +5,6 @@
     "pages/edit/edit",
     "pages/month/month"
   ],
-  "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "日"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "text": "月"
-    }]
-  },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#666666",
