@@ -1,4 +1,5 @@
 <view class="page">
+  <canvas canvas-id="myCanvas" style="border: 1px solid;"/>
   <block>
     <text>今日无数据</text>
     <text bindtap="tapAdd">添加</text>
