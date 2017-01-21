@@ -11,6 +11,7 @@ class Wave {
         this.options = defaultOptions
         this.context = wx.createCanvasContext(canvasId)
         this.waves = [] // [{color, baseline}]
+        this.offset = 0
 
         this._init()
     }
@@ -23,6 +24,7 @@ class Wave {
         this._drawWave({
             baseline: 50
         })
+        this.offset += 1
         requestAnimationFrame(this._render.bind(this))
     }
 
@@ -32,12 +34,12 @@ class Wave {
         let height = this.options.height
 
         context.save()
-        context.setFillStyle(Date.now() % 2 === 0 ? 'yellow' : 'red')
+        context.setFillStyle('red')
         context.beginPath()
-        context.moveTo(0, 0)
+        context.moveTo(0 + this.offset, 0)
 
         for (let i = 0; i < width; i++) {
-            context.lineTo(i, Math.sin(i / Math.PI / 8) * 10 + wave.baseline)
+            context.lineTo(i + this.offset, Math.sin(i / Math.PI / 16) * 10 + wave.baseline)
         }
 
         context.lineTo(width, height)
