@@ -1,9 +1,5 @@
-const requestAnimationFrame = function (callback) {
-    return setTimeout(callback, 1000 / 60)
-}
-const cancelAnimationFrame = function (id) {
-    clearTimeout(id)
-}
+const requestAnimationFrame = require('./AnimationFrame').requestAnimationFrame
+const cancelAnimationFrame = require('./AnimationFrame').cancelAnimationFrame
 
 class Waves {
     constructor (canvas, options = {}) {

@@ -1,0 +1,10 @@
+<template name="bars">
+    <scroll-view class="c-bars__scroller" scroll-x="true" width="100%" scroll-left="{{scrollLeft}}" bindscroll="handleScroll">
+        <view class="c-bars__wrapper" style="width:{{data.length * barWidth}}px;padding:0 {{barWidth}}px">
+            <view class="c-bar" wx:for="{{data}}" style="width:{{barWidth}}px" bindtap="handleTap">
+                <view class="c-bar__rect" style="height:{{item.value}}px;background-color:{{barColor}}"></view>
+                <text class="c-bar__label" style="color:{{labelColor}}">{{item.label}}</text>
+            </view>
+        </view>
+    </scroll-view>
+</template>

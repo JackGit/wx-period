@@ -1,5 +1,3 @@
-<import src="../../components/bars.wxml"/>
-
 <view class="page">
   <canvas canvas-id="myCanvas"/>
   <text class="fixed-text">TEXT</text>
@@ -14,5 +12,4 @@
   <button bindtap="tapMore">
     查看更多
   </button>
-  <template is="bars" data="{{data: barData}}"></template>
 </view>

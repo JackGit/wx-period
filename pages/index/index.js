@@ -1,17 +1,7 @@
 var Waves = require('../../libs/Waves.js')
 var app = getApp()
-let barData = []
-    for (let i = 0; i < 28; i++) {
-      barData.push({
-        label: i,
-        value: i > 20 ? 4 : Math.random() * 100
-      })
-    }
 
 Page({
-  data: {
-    barData: barData
-  },
   onReady () {
     let wave
     let ctx = wx.createCanvasContext('myCanvas')

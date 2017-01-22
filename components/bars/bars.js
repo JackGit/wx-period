@@ -1,0 +1,8 @@
+module.exports = {
+    props: {
+
+    },
+    methods: {
+        
+    }
+}

@@ -1,5 +1,20 @@
+let barData = []
+for (let i = 0; i < 31; i++) {
+    barData.push({
+        label: i,
+        value: i > 20 ? 4 : Math.random() * 102
+    })
+}
+
 Page({
     data: {
+        barInfo: {
+            data: barData,
+            barWidth: 20,
+            barColor: 'red',
+            labelColor: 'white'
+        },
+        scrollLeft: 0,
         clicked: '',
         records: [{
             id: 1,
@@ -26,6 +41,5 @@ Page({
     tapRecord (e) {
         this.setData({clicked: e.currentTarget.dataset.recordId})
         wx.navigateTo({url: '../edit/edit?recordId=' + e.currentTarget.dataset.recordId})
-
     }
 })

@@ -1,0 +1,32 @@
+.c-bars__scroller {
+  background-color: grey;
+}
+.c-bars__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  height: 200px;
+  background-color: lightcoral;
+}
+
+.c-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-self: flex-end;
+  margin: 0 2px;
+}
+
+.c-bar__label {
+  display: inline-block;
+  width: 100%;
+  font-size: 9px;
+  text-align: center;
+}
+
+.c-bar__rect {
+  display: inline-block;
+  width: 100%;
+  border-radius: 2px;
+}
