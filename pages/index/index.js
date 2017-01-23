@@ -15,8 +15,8 @@ Page({
   },
   onReady () {
     let wave
-    let ctx = wx.createCanvasContext('myCanvas')
-    let grd = ctx.createLinearGradient(0, 0, 0, 200)
+    let ctx = wx.createCanvasContext('waveCanvas')
+    let grd = ctx.createLinearGradient(0, 0, 0, canvasHeight)
     
     grd.addColorStop(0, '#f9bec3')
     grd.addColorStop(1, '#ee4e5b')
@@ -44,17 +44,25 @@ Page({
             height: 20
         }]
     })
+
+    this.drawActionCanvas()
   },
-  tapMore () {
-    wx.navigateTo({url: '../month/month'})
+  drawActionCanvas () {
+    let ctx = wx.createCanvasContext('actionCanvas')
+    ctx.setFillStyle('white')
+    ///ctx.fillRect(0, 0, 80, 30)
+    //ctx.setFillStyle('black')
+    ctx.setFontSize(20)
+    ctx.fillText('EDIT', 19, 24)
+    ctx.draw()
   },
-  tapAdd () {
-    wx.navigateTo({url: '../edit/edit'})
-  },
-  tapText () {
+  tapCanvas () {
     wx.showModal({
-      title: '123',
-      content: 'taptext'
+      title: 'tap canvas',
+      content: 'tap canvas'
     })
+  },
+  tapListIcon () {
+    wx.navigateTo({url: '../month/month'})
   }
 })
