@@ -1,0 +1,8 @@
+<template name="bars">
+    <view class="c-bars">
+        <view class="c-bar" wx:for="{{data}}">
+            <view class="c-bar__rect" style="height:{{item.value}}px;"></view>
+            <text class="c-bar__label">{{item.label}}</text>
+        </view>
+    </view>
+</template>

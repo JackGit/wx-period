@@ -1,5 +1,8 @@
+<import src="../../components/bars.wxml"/>
+
 <view class="page">
-  <canvas canvas-id="myCanvas" style="border: 1px solid;"/>
+  <canvas canvas-id="myCanvas"/>
+  <text class="fixed-text">TEXT</text>
   <block>
     <text>今日无数据</text>
     <text bindtap="tapAdd">添加</text>
@@ -11,4 +14,5 @@
   <button bindtap="tapMore">
     查看更多
   </button>
+  <template is="bars" data="{{data: barData}}"></template>
 </view>
