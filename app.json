@@ -4,11 +4,5 @@
     "pages/logs/logs",
     "pages/edit/edit",
     "pages/month/month"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#666666",
-    "navigationBarTitleText": "Jack Yang",
-    "navigationBarTextStyle":"white"
-  }
+  ]
 }

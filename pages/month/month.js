@@ -11,8 +11,8 @@ Page({
         barInfo: {
             data: barData,
             barWidth: 20,
-            barColor: 'red',
-            labelColor: 'white'
+            barColor: '#cfe5fc',
+            labelColor: '#cfe5fc'
         },
         scrollLeft: 0,
         clicked: '',

@@ -1,5 +1,5 @@
 .c-bars__scroller {
-  background-color: grey;
+  background-color: #51a6ff;
 }
 .c-bars__wrapper {
   display: flex;
@@ -7,7 +7,6 @@
   flex-wrap: nowrap;
   justify-content: center;
   height: 200px;
-  background-color: lightcoral;
 }
 
 .c-bar {

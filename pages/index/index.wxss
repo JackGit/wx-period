@@ -1,33 +1,73 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.c-todayPage {
+  background-color: #fff;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
-canvas {
-  width: 100%;
-  height: 200px;
-}
-
-.fixed-text {
+.c-todayPage__waveCanvas {
   position: absolute;
-  top: 100px;
+  bottom: 0;
+  width: 100%;
+}
+
+.c-todayPage__addBtn {
+  position: absolute;
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  bottom: 20%;
   left: 50%;
-  color: black;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  background-color: #f7fcff;
+  text-align: center;
+  line-height: 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+.c-todayPage__date {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 16%;
+  text-align: center;
+  color: #9ca5ae;
+  opacity: .8;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.c-todayPage__noData {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 24%;
+  text-align: center;
+  color: #9ca5ae;
+  font-size: 24px;
+}
+
+.c-todayPage__temperature {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 18%;
+  /*color: #4ea9fc;*/
+  color: #ee4e5b;
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: -10px;
+}
+
+.c-todayPage__unit {
+  font-weight: normal;
+  font-size: 60px;
+}
+
+.c-todayPage__periodTips {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 42%;
+  text-align: center;
+  color: #f8b3b8;/**#ee4e5b**/
 }

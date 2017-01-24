@@ -1,1 +1,7 @@
-{}
+{
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "今日",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff",
+    "disableScroll": true
+}
