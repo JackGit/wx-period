@@ -11,22 +11,29 @@
     <view class="c-monthPage__sections">
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_date.png"></image>
-            <text class="c-section__value">2017年1月26</text>
+            <view class="c-section__content">2017年1月26</view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_temperature.png"></image>
-            <text class="c-section__value">36.7°C</text>
+            <view class="c-section__content" bindtap="editTemperature">
+                <text>36.7°C</text>
+                <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
+            </view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_drop.png"></image>
-            <text class="c-section__value">第4天（结束日）</text>
+            <view class="c-section__content">
+                <text>第4天（结束日）</text>
+                <switch></switch>
+            </view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_note.png"></image>
-            <text class="c-section__value">这里是很长会长会创航的</text>
+            <view class="c-section__content" bindtap="editNote">
+                <text>这里是很关于今天的很长长很长的常常的一个说明，也可以是描述，或者note. but we dont end here</text>
+                <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
+            </view>
         </view>
     </view>
-
-    <view class="c-monthPage__editBtn" bindtap="tapEdit">编辑</view>
-    <view class="c-monthPage__deleteBtn" bindtap="tapDelete">删除</view>
+    <view class="c-monthPage__deleteBtn" bindtap="deleteData">删除</view>
 </view>

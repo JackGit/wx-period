@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/edit/edit",
-    "pages/month/month",
-    "pages/input/input"
+    "pages/details/details",
+    "pages/temperature-editor/temperature-editor",
+    "pages/note-editor/note-editor"
   ]
 }

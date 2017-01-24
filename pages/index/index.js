@@ -63,7 +63,6 @@ Page({
     })
   },
   tapListIcon () {
-    wx.navigateTo({url: '../month/month'})
-    // wx.navigateTo({url: '../input/input'})
+    wx.navigateTo({url: '../details/details'})
   }
 })

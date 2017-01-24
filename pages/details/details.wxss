@@ -55,29 +55,33 @@
     margin: 12px;
 }
 
-.c-section__value {
+.c-section__more {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    opacity: .4;
+    margin-right: 10px;
+}
+
+.c-section__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     flex: 1;
-    border-bottom: 1px solid rgba(0,0,0,.3);
+    border-bottom: 1px solid rgba(0,0,0,.1);
     color: rgba(0,0,0,.6);
     font-size: 14px;
-    padding: 12px 12px 12px 0;
+    min-height: 40px;
 }
-.c-section:last-child .c-section__value {
+.c-section:last-child .c-section__content {
     border: none;
 }
 
-.c-monthPage__editBtn {
-    display: inline-block;
-    width: 80%;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 20px;
-    color: #51a6ff;
-    background-color: #fff;
-    text-align: center;
-    margin-top: 20px;
+.c-section__content text {
+    flex: 1;
+    margin: 10px 0;
 }
-
 .c-monthPage__deleteBtn {
     display: inline-block;
     width: 80%;
@@ -87,6 +91,6 @@
     color: red;
     text-align: center;
     border: 1px solid #fff;
-    margin-top: 10px;
+    margin-top: 40px;
     margin-bottom: 20px;
 }

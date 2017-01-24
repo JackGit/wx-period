@@ -42,10 +42,8 @@ Page({
         this.setData({clicked: e.currentTarget.dataset.recordId})
         wx.navigateTo({url: '../edit/edit?recordId=' + e.currentTarget.dataset.recordId})
     },
-    tapEdit () {
-        wx.navigateTo({url: '../input/input'})
-    },
-    tapDelete () {
+    
+    deleteData () {
         wx.showActionSheet({
             itemList: ['确认删除'],
             itemColor: '#ee4e5b',
@@ -59,6 +57,12 @@ Page({
                 }
             }
         })
+    },
+    editTemperature () {
+        wx.navigateTo({url: '../temperature-editor/temperature-editor'})
+    },
+    editNote () {
+        wx.navigateTo({url: '../note-editor/note-editor'})
     },
     tapNext () {
 
