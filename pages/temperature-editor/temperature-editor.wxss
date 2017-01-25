@@ -1,49 +1,66 @@
-.c-inputPage {
-    
+.c-temperatureEditorPage {
+    width: 100vw;
+    height: 100vh;
 }
 
-.c-inputPage__result {
+.c-temperatureEditorPage__result {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
     width: 100%;
-    height: 100px;
-    background: #fff;
+    height: 20vh;
+    background-color: #fff;
 }
 
-.c-inputPage__resultText {
-    padding: 0 20px 10px 0;
+.c-temperatureEditorPage__resultText {
+    padding: 0 20px 20px 0;
     font-size: 40px;
+    color: rgba(0,0,0,.8);
 }
 
-.c-inputPage__keyboard {
-    position: absolute;
-    bottom: 100px;
+.c-temperatureEditorPage__resultText text {
+    font-size: 30px;
+}
+
+.c-temperatureEditorPage__keyboard {
+    position: relative;
     display: flex;
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.c-keyboard__cellWrapper {
+    width: 30vw;
+    height: 13vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .c-keyboard__cell {
-    width: 33.3vw;
-    height: 15vh;
-    background-color: antiquewhite;
-    line-height: 15vh;
+    width: 10vh;
+    height: 10vh;
+    line-height: 10vh;
     text-align: center;
     font-size: 24px;
+    color: rgba(0,0,0,.6);
+    border-radius: 50%;
+    border: 1px solid #fff;
 }
 
-.c-inputPage__button {
-    position: absolute;
-    display: inline-block;
-    bottom: 30px;
+.c-keyboard__cell.is-active {
+    background-color: #fff;
+    color: #51a6ff;
+}
+
+.c-temperatureEditorPage__btn {
+    position: fixed;
+    bottom: 10vh;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: blue;
 }

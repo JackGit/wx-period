@@ -6,7 +6,7 @@ Page({
         displayValue: ''
     },
     tapKey (e) {
-        let value = e.target.dataset.num
+        let value = e.currentTarget.dataset.num
         
         if (value === 'C') {
             inputValues = []

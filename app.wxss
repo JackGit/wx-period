@@ -1,4 +1,5 @@
 /**@import './assets/styles/weui.wxss';**/
+@import '/assets/styles/ui.wxss';
 /**app.wxss**/
 .container {
   height: 100%;

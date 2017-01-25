@@ -1,3 +1,14 @@
-<view>
-edit note
+<view class="c-nodeEditorPage ui-lightblue">
+    <view class="ui-cellGroup">
+        <text class="ui-cellGroup__label">备注</text>
+        <view class="ui-cellGroup__cells">
+            <view class="ui-cell">
+                <textarea class="c-nodeEditorPage__textarea"></textarea>
+            </view>
+        </view>
+    </view>
+    
+    <view class="ui-floatButton ui-blue c-nodeEditorPage__btn">
+        <image src="/assets/icons/icon_check.png"></image>
+    </view>
 </view>

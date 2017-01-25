@@ -1,0 +1,21 @@
+.c-nodeEditorPage {
+    width: 100vw;
+    height: 100vh;
+}
+
+.c-nodeEditorPage__label {
+    font-size: 14px;
+}
+
+.c-nodeEditorPage__textarea {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+}
+
+.c-nodeEditorPage__btn {
+    position: fixed;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+}

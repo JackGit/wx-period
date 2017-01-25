@@ -1,0 +1,60 @@
+.ui-floatButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: red;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.ui-floatButton image {
+    width: 40px;
+    height: 40px;
+}
+
+.ui-flatButton {
+
+}
+
+
+.ui-cellGroup {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+}
+
+.ui-cellGroup__label {
+    font-size: 14px;
+    color: rgba(0,0,0,.6);
+    padding: 4px 10px;
+}
+
+.ui-cellGroup__cells {
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    margin-top: 6px;
+}
+
+.ui-cell {
+    background-color: #fff;
+}
+
+.ui-blue {
+    background-color: #51a6ff; 
+}
+
+.ui-blue-text {
+    color: #51a6ff; 
+}
+
+.ui-lightblue {
+    background-color: #ebf5ff;
+}
+
+.ui-lightblue-text {
+    background-color: #ebf5ff;
+}
