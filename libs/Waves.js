@@ -28,7 +28,7 @@ class Waves {
             this._drawWave(wave)
         })
         this.context.draw()
-        this.seedId = requestAnimationFrame(this._render.bind(this))
+        // this.seedId = requestAnimationFrame(this._render.bind(this))
     }
 
     _moveWave (wave) {

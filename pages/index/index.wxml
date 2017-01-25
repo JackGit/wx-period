@@ -1,9 +1,5 @@
 <view class="c-todayPage">
-  <view class="c-iconList" bindtap="tapListIcon">
-    <view class="c-iconList__line"></view>
-    <view class="c-iconList__line"></view>
-    <view class="c-iconList__line"></view>
-  </view>
+  <image class="c-todayPage__iconBars" src="/assets/icons/icon_bars.png" bindtap="tapListIcon"></image>
   <text class="c-todayPage__date">Jan 24, 2017</text>
   <view wx:if="{{todayData.temperature}}" class="c-todayPage__temperature">
     {{todayData.temperature}}<text class="c-todayPage__unit">°C</text>

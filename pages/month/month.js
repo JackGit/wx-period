@@ -2,7 +2,7 @@ let barData = []
 for (let i = 0; i < 31; i++) {
     barData.push({
         label: i,
-        value: i > 20 ? 4 : Math.random() * 102
+        value: i > 20 ? 0 : Math.random() * 102
     })
 }
 
@@ -41,5 +41,29 @@ Page({
     tapRecord (e) {
         this.setData({clicked: e.currentTarget.dataset.recordId})
         wx.navigateTo({url: '../edit/edit?recordId=' + e.currentTarget.dataset.recordId})
+    },
+    tapEdit () {
+        wx.navigateTo({url: '../input/input'})
+    },
+    tapDelete () {
+        wx.showActionSheet({
+            itemList: ['确认删除'],
+            itemColor: '#ee4e5b',
+            success (response) {
+                if (response.tapIndex === 0) {
+                    wx.showToast({
+                        title: '删除成功',
+                        icon: 'success',
+                        duration: 1000
+                    })
+                }
+            }
+        })
+    },
+    tapNext () {
+
+    },
+    tapPrev () {
+        
     }
 })

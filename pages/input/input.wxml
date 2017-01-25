@@ -1,0 +1,9 @@
+<view class="c-InputPage">
+    <view class="c-inputPage__result">
+        <text class="c-inputPage__resultText">{{displayValue}}°C</text>
+    </view>
+    <view class="c-inputPage__keyboard">
+        <view class="c-keyboard__cell" data-num="1" wx:for="{{keys}}" data-num="{{item}}" bindtap="tapKey">{{item}}</view>
+    </view>
+    <view class="c-inputPage__button"></view>
+</view>

@@ -1,0 +1,49 @@
+.c-inputPage {
+    
+}
+
+.c-inputPage__result {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    height: 100px;
+    background: #fff;
+}
+
+.c-inputPage__resultText {
+    padding: 0 20px 10px 0;
+    font-size: 40px;
+}
+
+.c-inputPage__keyboard {
+    position: absolute;
+    bottom: 100px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.c-keyboard__cell {
+    width: 33.3vw;
+    height: 15vh;
+    background-color: antiquewhite;
+    line-height: 15vh;
+    text-align: center;
+    font-size: 24px;
+}
+
+.c-inputPage__button {
+    position: absolute;
+    display: inline-block;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: blue;
+}
