@@ -1,12 +1,25 @@
-let inputValues = []
+const app = getApp()
+const eventBus = app.eventBus
+const pageInitData = app.pageInitData
 
 Page({
     data: {
         keys: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'C'],
         displayValue: ''
     },
+    onLoad () {
+        this.initPageData()
+    },
+    initPageData () {
+        let value = pageInitData['temperature-editor'].temperature
+        this.setData({
+            displayValue: value + ''
+        })
+        delete pageInitData['temperature-editor']
+    },
     tapKey (e) {
         let value = e.currentTarget.dataset.num
+        let inputValues = this.data.displayValue.split('')
         
         if (value === 'C') {
             inputValues = []
@@ -32,7 +45,8 @@ Page({
             displayValue: inputValues.join('')
         })
     },
-    tapConfirm () {
-        
+    tapOK () {
+        eventBus.emit('temperature-change', this.data.displayValue * 1)
+        wx.navigateBack()
     }
 })

@@ -27,7 +27,7 @@ Page({
         height: canvasHeight,
         autoStart: true,
         waves: [{
-            x: 0,
+            x: Math.random() * windowWidth,
             y: 70,
             color: grd,
             opacity: .8,
@@ -35,7 +35,7 @@ Page({
             length: windowWidth * 2,
             height: 20
         }, {
-            x: 30,
+            x: Math.random() * windowWidth,
             y: 100,
             color: grd,
             opacity: .8,

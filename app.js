@@ -1,4 +1,6 @@
-const AV = require('./libs/AV.js')
+const AV = require('/libs/AV.js')
+const EventBus = require('/libs/EventBus.js')
+const eventBus = new EventBus()
 
 AV.init({
   appId: 'ozewwcwsyq92g2hommuxqrqzg6847wgl8dtrac6suxzko333',
@@ -31,7 +33,6 @@ App({
       })
     }
   },
-  globalData:{
-    userInfo:null
-  }
+  eventBus: eventBus,
+  pageInitData: {}
 })

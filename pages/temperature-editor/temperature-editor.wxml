@@ -8,7 +8,7 @@
         </view>
     </view>
     
-    <view class="ui-floatButton ui-blue c-temperatureEditorPage__btn">
+    <view class="ui-floatButton ui-blue c-temperatureEditorPage__btn" bindtap="tapOK">
         <image src="/assets/icons/icon_check.png"></image>
     </view>
 </view>

@@ -16,7 +16,7 @@
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_temperature.png"></image>
             <view class="c-section__content" bindtap="editTemperature">
-                <text>36.7°C</text>
+                <text>{{currentRecord.temperature}}°C</text>
                 <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
             </view>
         </view>
@@ -24,13 +24,13 @@
             <image class="c-section__icon" src="/assets/icons/icon_drop.png"></image>
             <view class="c-section__content">
                 <text>第4天（结束日）</text>
-                <switch></switch>
+                <switch checked="{{currentRecord.inPeriod}}" bindchange="handleChangePeriod" color="#51a6ff"></switch>
             </view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_note.png"></image>
             <view class="c-section__content" bindtap="editNote">
-                <text>这里是很关于今天的很长长很长的常常的一个说明，也可以是描述，或者note. but we dont end here</text>
+                <text>{{currentRecord.note}}</text>
                 <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
             </view>
         </view>
