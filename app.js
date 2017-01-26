@@ -1,19 +1,15 @@
 const AV = require('/libs/AV.js')
-const EventBus = require('/libs/EventBus.js')
-const eventBus = new EventBus()
+const eventBus = new require('/libs/EventBus.js')()
 
-AV.init({
-  appId: 'ozewwcwsyq92g2hommuxqrqzg6847wgl8dtrac6suxzko333',
-  appKey: 'ni0kwg7h8hwtz6a7dw9ipr7ayk989zo5y8t0sn5gjiel6uav'  
+AV.init({ 
+ appId: 'DSqT0JstxADMYEIqhTM9CVkk-gzGzoHsz', 
+ appKey: 'qAKWeP1wdTyVUgjAkzvjEsHW', 
 })
 
 //app.js
 App({
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    
   },
   getUserInfo:function(cb){
     var that = this
