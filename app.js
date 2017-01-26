@@ -1,5 +1,6 @@
 const AV = require('/libs/AV.js')
-const eventBus = new require('/libs/EventBus.js')()
+const EventBus = require('/libs/EventBus.js')
+const eventBus = new EventBus()
 
 AV.init({ 
  appId: 'DSqT0JstxADMYEIqhTM9CVkk-gzGzoHsz', 
@@ -8,27 +9,27 @@ AV.init({
 
 //app.js
 App({
-  onLaunch: function () {
-    
+  onLaunch () {
+    this.getUserInfo(userInfo => console.log(userInfo))
   },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-      //调用登录接口
+  getUserInfo (callback) {
+    let that = this
+    if (this.globalData.userInfo) {
+      callback && callback(this.globalData.userInfo)
+    } else {
       wx.login({
-        success: function () {
+        success () {
           wx.getUserInfo({
-            success: function (res) {
+            success (res) {
               that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
+              callback && callback(that.globalData.userInfo)
             }
           })
         }
       })
     }
   },
-  eventBus: eventBus,
-  pageInitData: {}
+  globalData: {},
+  pageInitData: {},
+  eventBus: eventBus
 })
