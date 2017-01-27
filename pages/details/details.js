@@ -16,7 +16,7 @@ Page({
             date: new Date(),
             temperature: 36.7,
             inPeriod: true,
-            note: '这里是很关于今天的很长长很长的常常的一个说明，也可以是描述，或者note. but we dont end here'
+            note: 'This would be a very very long description about your temperature. Today is Chinese New Year'
         },
         barInfo: {
             data: barData,
