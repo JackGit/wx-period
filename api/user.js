@@ -7,6 +7,6 @@ function createUser (request, onSuccess, onError) {
 }
 
 module.exports = {
-  checkUserExists,
+  checkUserExistence,
   createUser
 }

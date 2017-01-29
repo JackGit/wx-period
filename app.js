@@ -15,6 +15,13 @@ App({
   onLaunch () {
     this.getUserInfo(userInfo => console.log(userInfo))
 
+    AV.User.loginWithWeapp().then(user => {
+      this.globalData.user = user.toJSON()
+      wx.showModal({
+        title: 'user',
+        content: JSON.stringify(this.globalData.user)
+      })
+    }).catch(console.error)
     /*UserAPI.checkUserExistence(openid, user => {
       if (user) {
         // exists
