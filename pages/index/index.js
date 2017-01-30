@@ -1,4 +1,6 @@
-const Waves = require('../../libs/Waves.js')
+import AV from '../../libs/AV.js'
+import Waves from '../../libs/Waves.js'
+
 const app = getApp()
 const windowWidth = wx.getSystemInfoSync().windowWidth
 const windowHeight = wx.getSystemInfoSync().windowHeight
@@ -17,7 +19,7 @@ Page({
     let wave
     let ctx = wx.createCanvasContext('waveCanvas')
     let grd = ctx.createLinearGradient(0, 0, 0, canvasHeight)
-    
+
     grd.addColorStop(0, '#f9bec3')
     grd.addColorStop(1, '#ee4e5b')
     //grd.addColorStop(0, '#b7ecfe')
@@ -46,6 +48,19 @@ Page({
     })
 
     this.drawActionCanvas()
+    this.loginAndFetchData()
+  },
+  loginAndFetchData () {
+    return AV.Promise.resolve(AV.User.current()).then(user => {
+      return user ? (
+        user.isAuthenticated().then(authed => authed ? user : null)
+      ) : null
+    }).then(user => {
+      return user ? user : AV.User.loginWithWeapp()
+    }).then(user => {
+      console.log('uid', user.id)
+      // return temperatureAPI.getData()
+    }).catch(error => console.error(error.message))
   },
   drawActionCanvas () {
     let ctx = wx.createCanvasContext('actionCanvas')

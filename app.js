@@ -14,10 +14,6 @@ AV.init({
 App({
   onLaunch () {
     this.getUserInfo(userInfo => console.log(userInfo))
-
-    AV.User.loginWithWeapp().then(user => {
-      this.globalData.user = user.toJSON()
-    }).catch(console.error)
   },
   getUserInfo (callback) {
     let that = this
