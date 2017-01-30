@@ -17,25 +17,7 @@ App({
 
     AV.User.loginWithWeapp().then(user => {
       this.globalData.user = user.toJSON()
-      wx.showModal({
-        title: 'user',
-        content: JSON.stringify(this.globalData.user)
-      })
     }).catch(console.error)
-    /*UserAPI.checkUserExistence(openid, user => {
-      if (user) {
-        // exists
-      } else {
-        // new user
-        UserAPI.createUser(request, response => {
-
-        }, error => {
-
-        })
-      }
-    }, () => {
-      // error
-    })*/
   },
   getUserInfo (callback) {
     let that = this
