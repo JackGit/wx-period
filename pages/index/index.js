@@ -73,16 +73,8 @@ Page({
     ctx.draw()
   },
   tapCanvas () {
-    wx.showModal({
-      title: 'tap canvas',
-      content: 'tap canvas'
-    })
-
-    addTemperature({
-      temperature: 36.7,
-      inPeriod: false,
-      note: 'test note'
-    })
+    console.log('AV.User.currnet()', AV.User.current())
+    
   },
   tapListIcon () {
     wx.navigateTo({url: '../details/details'})

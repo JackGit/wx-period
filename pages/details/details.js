@@ -1,25 +1,16 @@
+import { addTemperature, getMonthData } from '../../api/temperature.js'
+
 const app = getApp()
 const pageInitData = app.pageInitData
 const eventBus = getApp().eventBus
-let barData = []
-
-for (let i = 0; i < 31; i++) {
-    barData.push({
-        label: i,
-        value: i > 20 ? 0 : Math.random() * 102
-    })
-}
+const now = new Date()
 
 Page({
     data: {
-        currentRecord: {
-            date: new Date(),
-            temperature: 36.7,
-            inPeriod: true,
-            note: 'This would be a very very long description about your temperature. Today is Chinese New Year. And 2nd day of Chinese New Year'
-        },
+        temperatureRecords: [],
+        currentRecord: null,
         barInfo: {
-            data: barData,
+            data: [],
             barWidth: 20,
             barColor: '#cfe5fc',
             labelColor: '#cfe5fc'
@@ -29,8 +20,27 @@ Page({
         eventBus.on('temperature-change', this.handleTemperatureChange.bind(this))
         eventBus.on('note-change', this.handleNoteChange.bind(this))
     },
+    onReady () {
+        getMonthData({ year: now.getFullYear(), month: now.getMonth() }).then(this.setTemperatureData)
+    },
     onUnload () {
         eventBus.off('temperature-change')
+    },
+    setTemperatureData (temperatureRecords) {
+        this.setData({
+            temperatureRecords,
+            currentRecord: temperatureRecords.filter(
+                r => r.date - new Date(now.getFullYear(), now.getMonth(), now.getDate()) === 0
+            )[0],
+            'barInfo.data': temperatureRecords.map((t, i) => {
+                return {
+                    id: t.id,
+                    label: i + 1,
+                    value: t.temperature
+                }
+            })
+        })
+        console.log(temperatureRecords)
     },
     handleTemperatureChange (value) {
         this.setData({ 'currentRecord.temperature': value })
@@ -46,6 +56,16 @@ Page({
     },
     tapPrev () {
         
+    },
+    handleTapBar (e) {
+        let id = e.currentTarget.dataset.id
+        if (id === this.data.currentRecord.id) {
+            return
+        } else {
+            this.setData({
+                currentRecord: this.data.temperatureRecords.filter(r => r.id === id)[0]
+            })
+        }
     },
     editTemperature () {
         pageInitData['temperature-editor'] = { temperature: this.data.currentRecord.temperature }

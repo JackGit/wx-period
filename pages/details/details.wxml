@@ -11,26 +11,26 @@
     <view class="c-monthPage__sections">
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_date.png"></image>
-            <view class="c-section__content">2017年1月26</view>
+            <view class="c-section__content">{{currentRecord && currentRecord.dateString}}</view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_temperature.png"></image>
             <view class="c-section__content" bindtap="editTemperature">
-                <text>{{currentRecord.temperature}}°C</text>
+                <text>{{currentRecord && currentRecord.temperature}}°C</text>
                 <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
             </view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_drop.png"></image>
             <view class="c-section__content">
-                <text>第4天（结束日）</text>
-                <switch checked="{{currentRecord.inPeriod}}" bindchange="handleChangePeriod" color="#51a6ff"></switch>
+                <text>{{currentRecord && (currentRecord.inPeriod ? '月经期第' + currentRecord.periodDate + '天' : '非月经期')}}</text>
+                <switch checked="{{currentRecord && currentRecord.inPeriod}}" bindchange="handleChangePeriod" color="#51a6ff"></switch>
             </view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_note.png"></image>
             <view class="c-section__content" bindtap="editNote">
-                <text>{{currentRecord.note}}</text>
+                <text>{{currentRecord && currentRecord.note}}</text>
                 <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
             </view>
         </view>
