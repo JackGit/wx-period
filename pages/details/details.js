@@ -1,4 +1,5 @@
 import { addTemperature, getMonthData } from '../../api/temperature.js'
+import { temperatureRecordsToBarData } from '../../utils/util.js'
 
 const app = getApp()
 const pageInitData = app.pageInitData
@@ -11,10 +12,13 @@ Page({
         currentRecord: null,
         barInfo: {
             data: [],
+            selected: '',
             barWidth: 20,
-            barColor: '#cfe5fc',
+            barColor: '#fff',
             labelColor: '#cfe5fc'
-        }
+        },
+        showPrevButton: true,
+        showNextButton: true
     },
     onLoad () {
         eventBus.on('temperature-change', this.handleTemperatureChange.bind(this))
@@ -32,15 +36,8 @@ Page({
             currentRecord: temperatureRecords.filter(
                 r => r.date - new Date(now.getFullYear(), now.getMonth(), now.getDate()) === 0
             )[0],
-            'barInfo.data': temperatureRecords.map((t, i) => {
-                return {
-                    id: t.id,
-                    label: i + 1,
-                    value: t.temperature
-                }
-            })
+            'barInfo.data': temperatureRecordsToBarData(temperatureRecords)
         })
-        console.log(temperatureRecords)
     },
     handleTemperatureChange (value) {
         this.setData({ 'currentRecord.temperature': value })
@@ -63,7 +60,8 @@ Page({
             return
         } else {
             this.setData({
-                currentRecord: this.data.temperatureRecords.filter(r => r.id === id)[0]
+                currentRecord: this.data.temperatureRecords.filter(r => r.id === id)[0],
+                'barInfo.selected': id
             })
         }
     },

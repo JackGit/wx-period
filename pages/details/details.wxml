@@ -3,9 +3,9 @@
 <view class="c-monthPage">
     <template is="bars" data="{{...barInfo}}"></template>
     <view class="c-monthSelector">
-        <image class="c-monthSelector__left" src="/assets/icons/icon_left.png" bindtap="tapPrev"></image>
+        <image wx:if="{{showPrevButton}}" class="c-monthSelector__left" src="/assets/icons/icon_left.png" bindtap="tapPrev"></image>
         <text class="c-monthSelector__currentMonth">{{currentRecord ? currentRecord.monthWord : ''}}</text>
-        <image class="c-monthSelector__right" src="/assets/icons/icon_right.png" bindtap="tapNext"></image>
+        <image wx:if="{{showNextButton}}" class="c-monthSelector__right" src="/assets/icons/icon_right.png" bindtap="tapNext"></image>
     </view>
 
     <view class="c-monthPage__sections">
@@ -23,7 +23,7 @@
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_drop.png"></image>
             <view class="c-section__content">
-                <text>{{currentRecord ? (currentRecord.inPeriod ? '月经期第' + currentRecord.periodDate + '天' : '非月经期') : ''}}</text>
+                <text>{{currentRecord ? (currentRecord.inPeriod ? '月经期' : '非月经期') : ''}}</text>
                 <switch checked="{{currentRecord && currentRecord.inPeriod}}" bindchange="handleChangePeriod" color="#51a6ff"></switch>
             </view>
         </view>

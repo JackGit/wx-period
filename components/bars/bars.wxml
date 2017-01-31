@@ -2,7 +2,10 @@
     <scroll-view class="c-bars__scroller" scroll-x="true" width="100%" scroll-left="{{scrollLeft}}" bindscroll="handleScroll">
         <view class="c-bars__wrapper" style="width:{{data.length * barWidth}}px;padding:0 {{barWidth}}px">
             <view class="c-bar" wx:for="{{data}}" style="width:{{barWidth}}px" data-id="{{item.id}}" bindtap="handleTapBar">
-                <view class="c-bar__rect" style="height:{{item.value + 2}}px;background-color:{{barColor}}"></view>
+                <view class="c-bar__rect">
+                    <view class="c-bar__inner {{item.id === selected ? 'active' : ''}}" 
+                          style="height:{{item.value}}%;background-color:{{barColor}};"></view>
+                </view>
                 <text class="c-bar__label" style="color:{{labelColor}}">{{item.label}}</text>
             </view>
         </view>
