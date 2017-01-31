@@ -1,4 +1,5 @@
 import AV from '../../libs/AV.js'
+import { addTemperature } from '../../api/temperature.js'
 import Waves from '../../libs/Waves.js'
 
 const app = getApp()
@@ -75,6 +76,12 @@ Page({
     wx.showModal({
       title: 'tap canvas',
       content: 'tap canvas'
+    })
+
+    addTemperature({
+      temperature: 36.7,
+      inPeriod: false,
+      note: 'test note'
     })
   },
   tapListIcon () {
