@@ -1,6 +1,7 @@
 import AV from '../libs/AV.js'
 import moment from '../libs/moment.min.js'
 import Temperature from '../model/temperature.js'
+import { formatDate, getMonthWord } from '../utils/util.js'
 
 // get data of target month
 function getMonthData (request) {
@@ -22,7 +23,6 @@ function getMonthData (request) {
       let date = moment(start).add(i, 'days').toDate()
       let record = temperatureRecords.filter(r => moment(r.date).isSame(date, 'day'))[0]
 
-      console.log('format', moment().format('YYYY年MM月DD日'))
       if (record) {
         records.push({
           id: record.id,
@@ -31,7 +31,8 @@ function getMonthData (request) {
           periodDate: 0, // start from 1. 1 means the 1st date of this period
           periodDays: 0,
           date: record.date,
-          dateString: moment(record.date).format('YYYY年MM月DD日'),
+          dateString: formatDate(record.date),
+          monthWord: getMonthWord(record.date.getMonth()),
           note: record.note
         })
       } else {
@@ -42,7 +43,8 @@ function getMonthData (request) {
           periodDate: 0,
           periodDays: 0,
           date: date,
-          dateString: moment(date).format('YYYY年MM月DD日'),
+          dateString: formatDate(date),
+          monthWord: getMonthWord(date.getMonth()),
           note: ''
         })
       }

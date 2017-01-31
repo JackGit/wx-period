@@ -4,33 +4,33 @@
     <template is="bars" data="{{...barInfo}}"></template>
     <view class="c-monthSelector">
         <image class="c-monthSelector__left" src="/assets/icons/icon_left.png" bindtap="tapPrev"></image>
-        <text class="c-monthSelector__currentMonth">September</text>
+        <text class="c-monthSelector__currentMonth">{{currentRecord ? currentRecord.monthWord : ''}}</text>
         <image class="c-monthSelector__right" src="/assets/icons/icon_right.png" bindtap="tapNext"></image>
     </view>
 
     <view class="c-monthPage__sections">
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_date.png"></image>
-            <view class="c-section__content">{{currentRecord && currentRecord.dateString}}</view>
+            <view class="c-section__content">{{currentRecord ? currentRecord.dateString : ''}}</view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_temperature.png"></image>
             <view class="c-section__content" bindtap="editTemperature">
-                <text>{{currentRecord && currentRecord.temperature}}°C</text>
+                <text>{{currentRecord ? currentRecord.temperature + '°C' : ''}}</text>
                 <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
             </view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_drop.png"></image>
             <view class="c-section__content">
-                <text>{{currentRecord && (currentRecord.inPeriod ? '月经期第' + currentRecord.periodDate + '天' : '非月经期')}}</text>
+                <text>{{currentRecord ? (currentRecord.inPeriod ? '月经期第' + currentRecord.periodDate + '天' : '非月经期') : ''}}</text>
                 <switch checked="{{currentRecord && currentRecord.inPeriod}}" bindchange="handleChangePeriod" color="#51a6ff"></switch>
             </view>
         </view>
         <view class="c-section">
             <image class="c-section__icon" src="/assets/icons/icon_note.png"></image>
             <view class="c-section__content" bindtap="editNote">
-                <text>{{currentRecord && currentRecord.note}}</text>
+                <text>{{currentRecord && currentRecord.note ? currentRecord.note : '无'}}</text>
                 <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
             </view>
         </view>
