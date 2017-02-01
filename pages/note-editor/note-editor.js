@@ -16,7 +16,7 @@ Page({
         })
         delete pageInitData['note-editor']
     },
-    handleBlur (e) {
+    handleInput (e) {
         this.setData({
             note: e.detail.value
         })

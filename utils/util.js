@@ -7,8 +7,21 @@ function getMonthWord (month) {
 }
 
 function temperatureRecordsToBarData (temperatureRecords) {
-  let max = Math.max(...temperatureRecords.map(r => r.temperature))
-  let min = Math.min(...temperatureRecords.filter(r => r.temperature).map(r => r.temperature))
+  let values = temperatureRecords.filter(r => r.temperature).map(r => r.temperature)
+  let max = 39
+  let min = 36
+  /*
+  if (values.length === 0) {
+    max = 39
+    min = 36
+  } else if (values.length === 1) {
+    max = values[0] * 1.1
+    min = values[0] * .9
+  } else {
+    max = Math.max(...values)
+    min = Math.min(...values)
+  }
+  */
 
   function _map (from, to, value) {
     return from + (value - min) * (to - from) / (max - min)

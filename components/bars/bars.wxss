@@ -31,18 +31,25 @@
   height: 26vh;
   border-radius: 2px;
   background-color: rgba(255,255,255,.1);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.c-bar__rect.active {
+  border: 1px solid rgba(255,255,255,.8);
 }
 
 .c-bar__inner {
   position: absolute;
   display: inline-block;
   bottom: 0;
-  border-radius: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
   width: 100%;
   height: 0;
-  opacity: .6;
+  opacity: .7;
 }
 
-.c-bar__inner.active {
+.c-bar__rect.active .c-bar__inner {
   opacity: .9;
 }

@@ -13,7 +13,7 @@ Page({
     initPageData () {
         let value = pageInitData['temperature-editor'].temperature
         this.setData({
-            displayValue: value + ''
+            displayValue: value ? value + '' : ''
         })
         delete pageInitData['temperature-editor']
     },

@@ -3,9 +3,13 @@
 <view class="c-monthPage">
     <template is="bars" data="{{...barInfo}}"></template>
     <view class="c-monthSelector">
-        <image wx:if="{{showPrevButton}}" class="c-monthSelector__left" src="/assets/icons/icon_left.png" bindtap="tapPrev"></image>
+        <view class="c-monthSelector__left" bindtap="tapPrev">
+            <image wx:if="{{showPrevButton}}" class="c-monthSelector__icon" src="/assets/icons/icon_left.png"></image>
+        </view>
         <text class="c-monthSelector__currentMonth">{{currentRecord ? currentRecord.monthWord : ''}}</text>
-        <image wx:if="{{showNextButton}}" class="c-monthSelector__right" src="/assets/icons/icon_right.png" bindtap="tapNext"></image>
+        <view class="c-monthSelector__right" bindtap="tapNext">
+            <image wx:if="{{showNextButton}}" class="c-monthSelector__icon" src="/assets/icons/icon_right.png"></image>
+        </view>
     </view>
 
     <view class="c-monthPage__sections">
@@ -13,21 +17,21 @@
             <image class="c-section__icon" src="/assets/icons/icon_date.png"></image>
             <view class="c-section__content">{{currentRecord ? currentRecord.dateString : ''}}</view>
         </view>
-        <view class="c-section">
+        <view class="c-section" wx:if="{{currentRecord && !currentRecord.temp}}">
             <image class="c-section__icon" src="/assets/icons/icon_temperature.png"></image>
             <view class="c-section__content" bindtap="editTemperature">
                 <text>{{currentRecord ? currentRecord.temperature + '°C' : ''}}</text>
                 <image class="c-section__more" src="/assets/icons/icon_left_black.png"></image>
             </view>
         </view>
-        <view class="c-section">
+        <view class="c-section" wx:if="{{currentRecord && !currentRecord.temp}}">
             <image class="c-section__icon" src="/assets/icons/icon_drop.png"></image>
             <view class="c-section__content">
                 <text>{{currentRecord ? (currentRecord.inPeriod ? '月经期' : '非月经期') : ''}}</text>
                 <switch checked="{{currentRecord && currentRecord.inPeriod}}" bindchange="handleChangePeriod" color="#51a6ff"></switch>
             </view>
         </view>
-        <view class="c-section">
+        <view class="c-section" wx:if="{{currentRecord && !currentRecord.temp}}">
             <image class="c-section__icon" src="/assets/icons/icon_note.png"></image>
             <view class="c-section__content" bindtap="editNote">
                 <text>{{currentRecord && currentRecord.note ? currentRecord.note : '无'}}</text>
@@ -35,5 +39,7 @@
             </view>
         </view>
     </view>
-    <view class="c-monthPage__deleteBtn" bindtap="deleteData">删除</view>
+
+    <view wx:if="{{currentRecord && !currentRecord.temp}}" class="c-monthPage__deleteBtn" bindtap="deleteData">删除</view>
+    <view wx:elif="{{currentRecord && currentRecord.temp}}" class="c-monthPage__addBtn" bindtap="addData">添加</view>
 </view>

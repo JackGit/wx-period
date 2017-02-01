@@ -21,17 +21,17 @@
     color: #fff;
     opacity: .8;
 }
-.c-monthSelector__left {
-    width: 20px;
-    height: 20px;
-    opacity: .6;
+.c-monthSelector__left, .c-monthSelector__right {
+    width: 10vw;
+    height: 8vw;
     margin: 0 20px;
+    text-align: center;
 }
-.c-monthSelector__right {
-    width: 20px;
-    height: 20px;
-    opacity: .6;
-    margin: 0 20px;
+.c-monthSelector__icon {
+    display: inline-block;
+    width: 8vw;
+    height: 8vw;
+    opacity: .8;
 }
 
 .c-monthPage__sections {
@@ -91,6 +91,18 @@
     color: red;
     text-align: center;
     border: 1px solid #fff;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.c-monthPage__addBtn {
+    display: inline-block;
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #fff;
+    color: #51a6ff;
     margin-top: 40px;
     margin-bottom: 20px;
 }

@@ -3,7 +3,7 @@
         <text class="ui-cellGroup__label">备注</text>
         <view class="ui-cellGroup__cells">
             <view class="ui-cell">
-                <textarea class="c-nodeEditorPage__textarea" auto-focus value="{{note}}" bindinput="handleInput" bindblur="handleBlur"></textarea>
+                <textarea class="c-nodeEditorPage__textarea" auto-focus value="{{note}}" bindinput="handleInput"></textarea>
             </view>
         </view>
     </view>

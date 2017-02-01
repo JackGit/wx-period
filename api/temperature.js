@@ -7,6 +7,7 @@ import { formatDate, getMonthWord } from '../utils/util.js'
 function getMonthData (request) {
   // get target month and the month before target month, for period info calculation
   let d = new Date(request.year, request.month)
+  let tomorrow = moment().add(1, 'day').startOf('day').toDate()
   let startDate = moment(d).subtract(1, 'months').startOf('month')
   let endDate = moment(d).add(1, 'months').startOf('month')
   let userIdQuery = new AV.Query(Temperature).equalTo('userId', AV.User.current().id)
@@ -28,8 +29,8 @@ function getMonthData (request) {
           id: record.id,
           temperature: record.temperature,
           inPeriod: record.inPeriod,
-          periodDate: 0, // start from 1. 1 means the 1st date of this period
-          periodDays: 0,
+          //periodDate: 0, // start from 1. 1 means the 1st date of this period
+          //periodDays: 0,
           date: record.date,
           dateString: formatDate(record.date),
           monthWord: getMonthWord(record.date.getMonth()),
@@ -37,20 +38,21 @@ function getMonthData (request) {
         })
       } else {
         records.push({
-          id: null,
+          id: 'temp' + (Date.now() + i),
           temperature: null,
           inPeriod: false,
-          periodDate: 0,
-          periodDays: 0,
+          //periodDate: 0,
+          //periodDays: 0,
           date: date,
           dateString: formatDate(date),
           monthWord: getMonthWord(date.getMonth()),
-          note: ''
+          note: '',
+          temp: true
         })
       }
     }
     return records
-  }).then(temperatureRecords => {
+  })/*.then(temperatureRecords => {
     // find period span and end date of target month
     let periodDays = 0
     let periodBegin = -1
@@ -77,9 +79,9 @@ function getMonthData (request) {
       }
     }
     return temperatureRecords
-  }).then(temperatureRecords => {
+  })*/.then(temperatureRecords => {
     // only return days of target month
-    return temperatureRecords.filter(r => r.date >= d)
+    return temperatureRecords.filter(r => r.date >= d && r.date < tomorrow)
   })
  }
 
@@ -90,10 +92,34 @@ function addTemperature (request) {
     note: request.note,
     date: new Date(request.date.getFullYear(), request.date.getMonth(), request.date.getDate()),
     userId: AV.User.current().id
-  }).save()
+  }).save().then(temperature => {
+    return {
+      id: temperature.id,
+      temperature: temperature.temperature,
+      inPeriod: temperature.inPeriod,
+      periodDate: 0,
+      periodDays: 0,
+      date: temperature.date,
+      dateString: formatDate(temperature.date),
+      monthWord: getMonthWord(temperature.date.getMonth()),
+      note: temperature.note,
+    }
+  })
+}
+
+function updateTemperature (request) {
+  return new AV.Query(Temperature).get(request.id).then(temperature => {
+    ['temperature', 'note', 'inPeriod'].forEach(field => {
+      if (request[field] !== null && request[field] !== undefined) {
+        temperature[field] = request[field]
+      }
+    })
+    return temperature.save()
+  })
 }
 
 module.exports = {
   addTemperature,
-  getMonthData
+  getMonthData,
+  updateTemperature
 }
