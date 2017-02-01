@@ -118,8 +118,13 @@ function updateTemperature (request) {
   })
 }
 
+function deleteTemperature (id) {
+
+}
+
 module.exports = {
   addTemperature,
   getMonthData,
-  updateTemperature
+  updateTemperature,
+  deleteTemperature
 }

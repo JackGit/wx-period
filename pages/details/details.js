@@ -1,4 +1,4 @@
-import { addTemperature, getMonthData, updateTemperature } from '../../api/temperature.js'
+import { addTemperature, getMonthData, updateTemperature, deleteTemperature } from '../../api/temperature.js'
 import { temperatureRecordsToBarData } from '../../utils/util.js'
 
 const app = getApp()
@@ -171,16 +171,19 @@ Page({
         })
     },
     deleteData () {
+        let id = this.data.currentRecord.id
         wx.showActionSheet({
             itemList: ['确认删除'],
             itemColor: '#ee4e5b',
             success (response) {
                 if (response.tapIndex === 0) {
-                    wx.showToast({
-                        title: '删除成功',
-                        icon: 'success',
-                        duration: 1000
-                    })
+                    deleteTemperature(id).then().catch(
+                        () => wx.showToast({
+                            title: '删除失败',
+                            icon: 'cancel',
+                            duration: 2000
+                        })
+                    )
                 }
             }
         })
