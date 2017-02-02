@@ -119,7 +119,7 @@ function updateTemperature (request) {
 }
 
 function deleteTemperature (id) {
-
+  // placeholder
 }
 
 module.exports = {
