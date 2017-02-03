@@ -1,7 +1,7 @@
 import AV from '../libs/AV.js'
 import moment from '../libs/moment.min.js'
-import Temperature from '../model/temperature.js'
-import { formatDate, getMonthWord } from '../utils/util.js'
+import Temperature from '../model/Temperature.js'
+import { formatDate, getMonthWord, createTempRecord } from '../utils/util.js'
 
 // get data of target month
 function getMonthData (request) {
@@ -33,22 +33,11 @@ function getMonthData (request) {
           //periodDays: 0,
           date: record.date,
           dateString: formatDate(record.date),
-          monthWord: getMonthWord(record.date.getMonth()),
+          monthWord: getMonthWord(record.date),
           note: record.note
         })
       } else {
-        records.push({
-          id: 'temp' + (Date.now() + i),
-          temperature: null,
-          inPeriod: false,
-          //periodDate: 0,
-          //periodDays: 0,
-          date: date,
-          dateString: formatDate(date),
-          monthWord: getMonthWord(date.getMonth()),
-          note: '',
-          temp: true
-        })
+        records.push(createTempRecord('temp' + (Date.now() + i), date))
       }
     }
     return records
@@ -101,7 +90,7 @@ function addTemperature (request) {
       periodDays: 0,
       date: temperature.date,
       dateString: formatDate(temperature.date),
-      monthWord: getMonthWord(temperature.date.getMonth()),
+      monthWord: getMonthWord(temperature.date),
       note: temperature.note,
     }
   })
@@ -119,7 +108,7 @@ function updateTemperature (request) {
 }
 
 function deleteTemperature (id) {
-  // placeholder
+  return new AV.Object.createWithoutData('Temperature', id).destroy()
 }
 
 module.exports = {

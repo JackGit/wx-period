@@ -1,5 +1,5 @@
-const requestAnimationFrame = require('./AnimationFrame').requestAnimationFrame
-const cancelAnimationFrame = require('./AnimationFrame').cancelAnimationFrame
+import { requestAnimationFrame, cancelAnimationFrame } from './AnimationFrame.js'
+import { getBetweenColor } from '../utils/util.js'
 
 class Waves {
     constructor (canvas, options = {}) {
@@ -28,11 +28,28 @@ class Waves {
             this._drawWave(wave)
         })
         this.context.draw()
-        // this.seedId = requestAnimationFrame(this._render.bind(this))
+        this.seedId = requestAnimationFrame(this._render.bind(this))
     }
 
     _moveWave (wave) {
-        wave.x += wave.speed / Waves.SPEED_ADJUST_CONSTANT
+        this._transitionWaveAttribute(wave)
+        wave.x = (wave.x + wave.speed / Waves.SPEED_ADJUST_CONSTANT) % wave.length
+    }
+
+    _transitionWaveAttribute (wave) {
+        if (wave.newLength && Math.round(wave.newLength) !== Math.round(wave.length)) {
+            wave.length += Math.sign(wave.newLength - wave.length) / 10
+        }
+        if (wave.newHeight &&  Math.round(wave.newHeight) !==  Math.round(wave.height)) {
+            wave.height += Math.sign(wave.newHeight - wave.height) / 10
+        }
+        if (wave.newSpeed &&  Math.round(wave.newSpeed * 10) !==  Math.round(wave.speed * 10)) {
+            wave.speed += Math.sign(wave.newSpeed - wave.speed) / 10
+        }
+        if (wave.newColor && wave.newColor !== wave.color) {
+            wave.newColorWeight += .01
+            wave.color = getBetweenColor(wave.color, wave.newColor, wave.newColorWeight)
+        }
     }
 
     _drawWave (wave) {
@@ -60,6 +77,16 @@ class Waves {
         context.fill()
     }
     
+    setWaves (waves) {
+        this.waves.forEach((wave, i) => {
+            wave.newLength = waves[i].length
+            wave.newHeight = waves[i].height
+            wave.newColor = waves[i].color
+            wave.newSpeed = waves[i].speed
+            wave.newColorWeight = 0
+        })
+    }
+
     start () {
         this.moving = true
     }

@@ -1,12 +1,12 @@
 <view class="c-todayPage">
-  <image class="c-todayPage__iconBars" src="/assets/icons/icon_bars.png" bindtap="tapListIcon"></image>
-  <text class="c-todayPage__date">Jan 24, 2017</text>
-  <view wx:if="{{todayData.temperature}}" class="c-todayPage__temperature">
-    {{todayData.temperature}}<text class="c-todayPage__unit">°C</text>
+  <text class="c-todayPage__date">{{todayDateString}}</text>
+  <view wx:if="{{todayRecord}}" class="c-todayPage__temperature {{todayRecord && todayRecord.inPeriod ? 'period' : ''}}" bindtap="tapTodayRecord">
+    <text class="c-todayPage__num">{{todayRecord.temperature}}</text>
+    <text class="c-todayPage__unit">°C</text>
   </view>
-  <text wx:else class="c-todayPage__noData">无数据</text>
-  <text wx:if="{{todayData.inPeriod}}" class="c-todayPage__periodTips">第{{todayData.daysPeriodLasts}}天</text>
-  <!--<view class="c-todayPage__addBtn">添加</view>-->
+  <view wx:else class="c-todayPage__noData">
+    <view class="c-todayPage__addBtn" bindtap="tapAddBtn">添加</view>
+  </view>
+  <text wx:if="{{todayRecord && todayRecord.inPeriod}}" class="c-todayPage__periodTips">第0天</text>
   <canvas canvas-id="waveCanvas" class="c-todayPage__waveCanvas" style="height:{{canvasHeight}}px"/>
-  <canvas canvas-id="actionCanvas" class="c-todayPage__actionCanvas" bindtouchstart="tapCanvas"/>
 </view>

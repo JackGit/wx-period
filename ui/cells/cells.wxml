@@ -1,9 +1,0 @@
-<import src="../cell/cell.wxml"/>
-
-<template name="cells">
-    <view class="weui-cells">
-        <block wx:for="{{cells}}">
-            <template is="cell" data="{{...item}}"/>
-        </block>
-    </view>
-</template>
