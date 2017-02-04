@@ -1,12 +1,12 @@
 <view class="c-todayPage">
   <text class="c-todayPage__date">{{todayDateString}}</text>
-  <view wx:if="{{todayRecord}}" class="c-todayPage__temperature {{todayRecord && todayRecord.inPeriod ? 'period' : ''}}" bindtap="tapTodayRecord">
+  <view wx:if="{{todayRecord && loaded}}" class="c-todayPage__temperature {{todayRecord && todayRecord.inPeriod ? 'period' : ''}}" bindtap="tapTodayRecord">
     <text class="c-todayPage__num">{{todayRecord.temperature}}</text>
     <text class="c-todayPage__unit">°C</text>
   </view>
-  <view wx:else class="c-todayPage__noData">
+  <view wx:elif="{{!todayRecord && loaded}}" class="c-todayPage__noData">
     <view class="c-todayPage__addBtn" bindtap="tapAddBtn">添加</view>
   </view>
-  <text wx:if="{{todayRecord && todayRecord.inPeriod}}" class="c-todayPage__periodTips">第0天</text>
+  <text wx:if="{{todayRecord && todayRecord.inPeriod}}" class="c-todayPage__periodTips">月经期</text>
   <canvas canvas-id="waveCanvas" class="c-todayPage__waveCanvas" style="height:{{canvasHeight}}px"/>
 </view>

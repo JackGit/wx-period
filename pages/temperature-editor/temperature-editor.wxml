@@ -4,7 +4,7 @@
     </view>
     <view class="c-temperatureEditorPage__keyboard">
         <view class="c-keyboard__cellWrapper" wx:for="{{keys}}" data-num="{{item}}" bindtap="tapKey">
-            <view class="c-keyboard__cell {{item==3 ? 'is-active': ''}}">{{item}}</view>
+            <view class="c-keyboard__cell {{item==activeKey ? 'is-active': ''}}">{{item}}</view>
         </view>
     </view>
     

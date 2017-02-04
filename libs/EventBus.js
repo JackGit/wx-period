@@ -27,9 +27,15 @@ module.exports = class EventBus {
         }
     }
 
+    once (event, handler) {
+        handler.__eventBus__once = true
+        this.on(event, handler)
+    }
+
     emit (event, payload) {
-        (this._eventHandlers[event] || []).forEach(handler => {
+        this._eventHandlers[event] = (this._eventHandlers[event] || []).filter(handler => {
             handler && handler.call(null, payload)
+            return !handler.__eventBus__once
         })
     }
 }

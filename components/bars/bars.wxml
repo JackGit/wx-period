@@ -4,7 +4,7 @@
             <view class="c-bar" wx:for="{{data}}" style="width:{{barWidth}}vw" data-id="{{item.id}}" bindtap="handleTapBar">
                 <view class="c-bar__rect {{item.id === selected ? 'active' : ''}}">
                     <view class="c-bar__inner" 
-                          style="height:{{item.value}}%;background-color:{{barColor}};"></view>
+                          style="height:{{item.value}}%;background-color:{{item.color || barColor}};"></view>
                 </view>
                 <text class="c-bar__label" style="color:{{labelColor}}">{{item.label}}</text>
             </view>

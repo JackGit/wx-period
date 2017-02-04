@@ -30,8 +30,6 @@ Page({
             initDate = today
         }
         monthOffset = 0
-        eventBus.on('temperature-change', this.handleTemperatureChange.bind(this))
-        eventBus.on('note-change', this.handleNoteChange.bind(this))
     },
     onReady () {
         console.log('ready')
@@ -115,6 +113,7 @@ Page({
             this.setData({
                 'currentRecord.inPeriod': value
             })
+            this.syncBarInfo()
             this.syncTodayRecord()
         }).catch(
             () => wx.showToast({
@@ -151,30 +150,44 @@ Page({
         }
     },
     editTemperature () {
+        eventBus.once('temperature-editor:confirm:details', temperature => {
+            this.handleTemperatureChange(temperature)
+            wx.navigateBack()
+        })
         pageInitData['temperature-editor'] = {}
-        wx.navigateTo({ url: '../temperature-editor/temperature-editor' })
+        wx.navigateTo({ url: '../temperature-editor/temperature-editor?sourcePage=details' })
     },
     editNote () {
+        eventBus.once('note-change', this.handleNoteChange.bind(this))
         pageInitData['note-editor'] = { note: this.data.currentRecord.note }
         wx.navigateTo({url: '../note-editor/note-editor'})
     },
     addData () {
-        let index = findIndexById(temperatureRecords, this.data.currentRecord.id)
-
-        addTemperature({
-            temperature: 36.7,
-            inPeriod: false,
-            note: '',
-            date: this.data.currentRecord.date
-        }).then((temperature) => {
-            temperatureRecords.splice(index, 1, temperature)
-            
-            this.setData({
-                currentRecord: temperature
-            })
-            this.syncBarInfo()
-            this.editTemperature()
+        eventBus.once('temperature-editor:confirm:details', temperature => {
+            let index = findIndexById(temperatureRecords, this.data.currentRecord.id)
+            addTemperature({
+                temperature,
+                inPeriod: false,
+                note: '',
+                date: this.data.currentRecord.date
+            }).then(record => {
+                temperatureRecords.splice(index, 1, record)
+                
+                this.setData({
+                    currentRecord: record
+                })
+                this.syncBarInfo()
+            }).catch(
+                () => wx.showToast({
+                    title: '添加失败',
+                    icon: 'cancel',
+                    duration: 2000
+                })
+            )
+            wx.navigateBack()
         })
+        pageInitData['temperature-editor'] = {}
+        wx.navigateTo({ url: '../temperature-editor/temperature-editor?sourcePage=details' })
     },
     deleteData () {
         let id = this.data.currentRecord.id

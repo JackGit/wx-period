@@ -37,11 +37,11 @@ class Waves {
     }
 
     _transitionWaveAttribute (wave) {
-        if (wave.newLength && Math.round(wave.newLength) !== Math.round(wave.length)) {
-            wave.length += Math.sign(wave.newLength - wave.length) / 10
+        if (wave.newLength && Math.round(wave.newLength * 10) !== Math.round(wave.length) * 10) {
+            wave.length += (Math.sign(wave.newLength - wave.length) * 10)
         }
         if (wave.newHeight &&  Math.round(wave.newHeight) !==  Math.round(wave.height)) {
-            wave.height += Math.sign(wave.newHeight - wave.height) / 10
+            wave.height += Math.sign(wave.newHeight - wave.height)
         }
         if (wave.newSpeed &&  Math.round(wave.newSpeed * 10) !==  Math.round(wave.speed * 10)) {
             wave.speed += Math.sign(wave.newSpeed - wave.speed) / 10

@@ -50,14 +50,12 @@
 
 .c-todayPage__temperature {
   position: absolute;
-  display: flex;
   top: 16vh;
   left: 0;
   width: 100%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
   color: #4ea9fc;
+  line-height: 20vh;
+  text-align: center;
 }
 
 .c-todayPage__temperature.period {
@@ -65,16 +63,17 @@
 }
 
 .c-todayPage__num {
-  height: 20vh;
-  line-height: 20vh;
   font-size: 20vh;
   font-weight: bold;
   letter-spacing: -10px;
+  vertical-align: bottom;
 }
 
 .c-todayPage__unit {
   font-weight: normal;
   font-size: 6vh;
+  vertical-align: bottom;
+  padding-left: 10px;
 }
 
 .c-todayPage__periodTips {

@@ -1,6 +1,6 @@
 import AV from '../../libs/AV.js'
-import { addTemperature, getMonthData } from '../../api/temperature.js'
 import Waves from '../../libs/Waves.js'
+import { addTemperature, getMonthData } from '../../api/temperature.js'
 
 const app = getApp()
 const pageInitData = app.pageInitData
@@ -14,6 +14,7 @@ let wave = null
 
 Page({
   data: {
+    loaded: false,
     todayRecord: null,
     todayDateString: today.getFullYear() + '年' + (today.getMonth() + 1) +　'月' + today.getDate() + '日',
     canvasHeight: canvasHeight
@@ -42,6 +43,7 @@ Page({
       return getMonthData({ year: today.getFullYear(), month: today.getMonth() }).then(records => {
         let todayRecord = records[records.length - 1]
         this.setTodayRecord(todayRecord.id.indexOf('temp') === -1 ? todayRecord : null)
+        this.setData({loaded: true})
       })
     }).catch(error => {
       console.error(error.message)
@@ -55,33 +57,32 @@ Page({
   setTodayRecord (record) {
     this.setData({
       todayRecord: record || false
-    })     
+    })
   },
   drawWaves () {
     let ctx = wx.createCanvasContext('waveCanvas')
-    let grd = ctx.createLinearGradient(0, 0, 0, canvasHeight)
+    let color
+    //let grd = ctx.createLinearGradient(0, 0, 0, canvasHeight)
     let inPeriod = this.data.todayRecord ? this.data.todayRecord.inPeriod : false
     let waveLength = inPeriod ? windowWidth * 2 : windowWidth * 20
-    let waveHeight = inPeriod ? 50 : 10
-    let speed = inPeriod ? .4 : .2
+    let waveHeight = inPeriod ? 40 : 5
+    let speed = inPeriod ? .3 : .1
     let waves = null
 
-    console.log(this.data.todayRecord, inPeriod)
-
     if (inPeriod) {
-      grd.addColorStop(0, '#f9bec3')
-      grd.addColorStop(1, '#ee4e5b')
-      grd = 'ee4e5b'
+      //grd.addColorStop(0, '#f9bec3')
+      //grd.addColorStop(1, '#ee4e5b')
+      color = '#ee4e5b'
     } else {
-      grd.addColorStop(0, '#b7ecfe')
-      grd.addColorStop(1, '#56abfe')
-      grd = '#56abfe'
+      //grd.addColorStop(0, '#b7ecfe')
+      //grd.addColorStop(1, '#56abfe')
+      color = '#56abfe'
     }
 
     waves = [{
       x: Math.random() * windowWidth,
       y: 70,
-      color: grd,
+      color: color,
       opacity: .8,
       speed: speed - .1,
       length: waveLength,
@@ -89,7 +90,7 @@ Page({
     }, {
       x: Math.random() * windowWidth,
       y: 100,
-      color: grd,
+      color: color,
       opacity: .8,
       speed: speed,
       length: waveLength,
@@ -107,19 +108,36 @@ Page({
       })
     }
   },
-  tapCanvas () {
-    console.log('AV.User.currnet()', AV.User.current())
-    
-  },
-  tapListIcon () {
-    wx.navigateTo({url: '../details/details'})
+  toTodayDetail (redirect) {
+    let url = '../details/details?year=' + today.getFullYear() + '&month=' + today.getMonth() + '&date=' + today.getDate()
+    if (redirect) {
+      wx.redirectTo({ url })
+    } else {
+      wx.navigateTo({ url })
+    }
   },
   tapTodayRecord () {
-    wx.navigateTo({url: '../details/details?year=' + today.getFullYear() + '&month=' + today.getMonth() + '&date=' + today.getDate()})
-    //pageInitData['temperature-editor'] = {}
-    //wx.navigateTo({ url: '../temperature-editor/temperature-editor' })
+    this.toTodayDetail()
   },
   tapAddBtn () {
-    wx.navigateTo({url: '../details/details?year=' + today.getFullYear() + '&month=' + today.getMonth() + '&date=' + today.getDate()})
+    eventBus.once('temperature-editor:confirm:index', temperature => {
+      addTemperature({
+          temperature,
+          inPeriod: false,
+          note: '',
+          date: new Date(today.getFullYear(), today.getMonth(), today.getDate())
+      }).then(record => {
+          this.setTodayRecord(record)
+          this.toTodayDetail(true)
+      }).catch(
+          () => wx.showToast({
+              title: '添加失败',
+              icon: 'cancel',
+              duration: 2000
+          })
+      )
+    })
+    pageInitData['temperature-editor'] = {}
+    wx.navigateTo({url: '../temperature-editor/temperature-editor?sourcePage=index'})
   }
 })

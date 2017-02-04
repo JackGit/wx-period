@@ -35,7 +35,8 @@ function temperatureRecordsToBarData (temperatureRecords) {
     return {
       id: r.id,
       value: r.temperature ? _map(10, 90, r.temperature) : 0,
-      label: i + 1
+      label: i + 1,
+      color: r.inPeriod ? '#ee4e5b' : ''
     }
   })
 }

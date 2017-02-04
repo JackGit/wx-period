@@ -47,9 +47,9 @@
   border-top-right-radius: 2px;
   width: 100%;
   height: 0;
-  opacity: .7;
+  opacity: .9;
 }
 
 .c-bar__rect.active .c-bar__inner {
-  opacity: .9;
+  opacity: 1;
 }
