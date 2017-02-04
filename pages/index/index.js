@@ -22,6 +22,10 @@ Page({
   onLoad () {
     eventBus.on('today-record-change', this.setTodayRecord.bind(this))
   },
+  onUnload () {
+    wave.destroy()
+    wave = null
+  },
   onReady () {
     this.loginAndFetchData().then(() => this.drawWaves())
   },
