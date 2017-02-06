@@ -6,8 +6,8 @@ import TemperatureAPI from '/api/temperature.js'
 const eventBus = new EventBus()
 
 AV.init({
- appId: 'xxx',
- appKey: 'xxx',
+ appId: 'DSqT0JstxADMYEIqhTM9CVkk-gzGzoHsz',
+ appKey: 'qAKWeP1wdTyVUgjAkzvjEsHW'
 })
 
 //app.js
